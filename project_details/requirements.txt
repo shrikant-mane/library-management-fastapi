@@ -1,0 +1,20 @@
+Gather requirements from the client
+Identify actors — Admin, Librarian, User, etc.
+Define use cases
+Design database/ER diagram
+Define API endpoints
+Decide authentication + authorization
+Create FastAPI project structure
+Configure PostgreSQL
+Configure Alembic
+Implement authentication
+Implement Users
+Implement Departments
+Implement Books
+Implement borrowing/return if required
+Add tests
+Dockerize
+Add CI/CD
+Deploy to AWS
+Configure production logging/monitoring
+Prepare API documentation and handover

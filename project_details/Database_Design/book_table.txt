@@ -1,0 +1,8 @@
+id
+name
+Author
+ISBN
+department_id
+available copy
+total_copy
+

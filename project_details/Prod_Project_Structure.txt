@@ -1,0 +1,81 @@
+library-management/
+│
+├── app/
+│   ├── main.py
+│   │
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── security.py
+│   │   ├── database.py
+│   │   └── logging.py
+│   │
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── book.py
+│   │   ├── department.py
+│   │   └── admin.py
+│   │
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── book.py
+│   │   ├── department.py
+│   │   └── auth.py
+│   │
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── deps.py
+│   │   │
+│   │   └── v1/
+│   │       ├── __init__.py
+│   │       ├── router.py
+│   │       │
+│   │       ├── auth.py
+│   │       ├── users.py
+│   │       ├── books.py
+│   │       ├── departments.py
+│   │       └── admin.py
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── user_service.py
+│   │   ├── book_service.py
+│   │   ├── department_service.py
+│   │   └── auth_service.py
+│   │
+│   ├── repositories/
+│   │   ├── __init__.py
+│   │   ├── user_repository.py
+│   │   ├── book_repository.py
+│   │   └── department_repository.py
+│   │
+│   ├── exceptions/
+│   │   ├── __init__.py
+│   │   └── custom_exceptions.py
+│   │
+│   └── middleware/
+│       ├── __init__.py
+│       └── middleware.py
+│
+├── alembic/
+│   ├── versions/
+│   ├── env.py
+│   └── script.py.mako
+│
+├── tests/
+│   ├── conftest.py
+│   ├── test_auth.py
+│   ├── test_users.py
+│   ├── test_books.py
+│   └── test_departments.py
+│
+├── .env
+├── .env.example
+├── .gitignore
+├── requirements.txt
+├── alembic.ini
+├── Dockerfile
+├── docker-compose.yml
+├── README.md
+└── pyproject.toml

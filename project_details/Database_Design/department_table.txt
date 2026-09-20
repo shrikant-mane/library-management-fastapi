@@ -1,0 +1,13 @@
+
+id
+name
+email
+hod
+
+
+CREATE TABLE department(
+	id INTEGER PRIMARY KEY,
+	name VARCHAR(200) unique,
+	head_of_department VARCHAR(200) unique
+);
+

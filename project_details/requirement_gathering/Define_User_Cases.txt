@@ -1,0 +1,10 @@
+Admin
+    -- CRUD on Department
+    -- CRUD on Student
+    -- CRUD on Book
+    -- Push notification to user
+
+USER
+    -- CRUD on only his details after login Student
+    -- See Available Books
+    -- Watch the books that He has taken

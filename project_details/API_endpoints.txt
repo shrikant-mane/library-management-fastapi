@@ -1,0 +1,37 @@
+admin_table         --> only logged in admin (Authenticated)
+    GET     /admin/all
+    GET     /admin/{admin_id}/
+    POST    /admin/create
+    PUT  /admin/{id}
+    DEPETE  /admin/{id}
+
+
+department_table
+    GET     /department/        --> admin + user
+    GET     /department/{id}    --> admin + user
+    POST    /department/create  --> only admin
+    PUT     /department/{id}    --> only admin
+    DELETE  /department/{id}    --> only admin
+
+
+
+user_table
+    GET     /users/             --> only admin can access it
+    GET     /users/{id}         --> only the user who is logged in
+    POST    /users/create       --> new user
+    PUT     /users/             --> only user who logged in
+    DELETE  /users/{id}         --> who logged in
+
+
+book_table                      --> only admin can access it
+    GET     /books/
+    GET     /books/{id}
+    POST    /books/create
+    PUT     /books/{id}
+    DELETE  /books/{id}
+
+
+issued_books
+    GET     /issued_book/          --> admin + users
+    GET     /issued_book/{book_id}        --> admin + users
+    GET     /issued_book/{user_id}  --> admin + specific user
