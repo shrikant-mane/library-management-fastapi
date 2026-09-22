@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException
 from app.repositories.departments import Department_Repository
 from pydantic import EmailStr, TypeAdapter, ValidationError
-from app.exceptions.department_exceptions import InvalidEmailException
+from app.exceptions.department_exceptions import InvalidDepartmentEmailException
 
 email_adapter = TypeAdapter(EmailStr)
 
@@ -40,7 +40,7 @@ class Depatrment_Service:
         try:
             valid_email = email_adapter.validate_python(department_email)
         except :
-            raise InvalidEmailException("Please provide valid email address")
+            raise InvalidDepartmentEmailException("Please provide valid email address")
 
         department = Department_Repository.update_department_email(department_id, valid_email, db)
         if not department:
