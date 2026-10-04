@@ -1,14 +1,16 @@
 from fastapi import APIRouter, Depends, status
-from app.core.database import SessionLocal, get_db
+from app.core.database import get_db
 from sqlalchemy.orm import Session
-from app.models.admin import Admin
+
 from app.services.admin import AdminService
 from app.schemas.admin import CreateAdmin, ResponseAdmin
-from pydantic import EmailStr
+from app.security.auth import get_current_admin
+
 
 router = APIRouter(
     prefix='/admin',
-    tags=['admin']
+    tags=['admin'],
+    dependencies=[Depends(get_current_admin)]
 )
 
 

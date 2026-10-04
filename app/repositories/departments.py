@@ -6,13 +6,19 @@ from app.schemas.departments import CreateDepartment
 class Department_Repository:
     @staticmethod
     def get_all_department(db: Session ):
-        department_list = db.query(Department).all()
+        department_list = db.query(Department).order_by(Department.id).all()
         return department_list
 
 
     @staticmethod
-    def get_department(department_id: int, db: Session):
+    def get_department_by_id(department_id: int, db: Session):
         department_data = db.query(Department).filter(Department.id == department_id).first()
+        return department_data
+
+
+    @staticmethod
+    def get_department_by_name(department_name: str, db: Session):
+        department_data = db.query(Department).filter(Department.name == department_name).first()
         return department_data
 
 
@@ -58,3 +64,7 @@ class Department_Repository:
         return department
 
 
+    @staticmethod
+    def get_department_id_by_name(department_name: str, db: Session):
+        department = db.query(Department).filter(department_name == Department.name).first()
+        return department

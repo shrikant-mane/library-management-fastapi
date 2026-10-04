@@ -1,14 +1,11 @@
 from sqlalchemy.orm import Session
 from app.models.admin import Admin
-from app.schemas.admin import CreateAdmin
-from app.models.admin import Admin
-
 
 class AdminRepository:
 
     @staticmethod
     def get_all_admin(db: Session ):
-        admin_list = db.query(Admin).all()
+        admin_list = db.query(Admin).order_by(Admin.id).all()
         return admin_list
 
 

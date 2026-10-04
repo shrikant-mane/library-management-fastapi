@@ -1,26 +1,22 @@
-from sqlalchemy.orm import Session
-from fastapi import HTTPException
 from app.repositories.admin import AdminRepository
 from app.models.admin import Admin
-from app.exceptions.admin_exception import InvalidADminEmailException
-from pydantic import EmailStr, TypeAdapter, ValidationError
+from app.exceptions.common_exception import InvalidEmailException,InvalidIdException, EmptyTableException
+from app.exceptions.admin_exception import EmptyAdminTableException, AdminDoesNotExistException
+from pydantic import EmailStr, TypeAdapter
 from pwdlib import PasswordHash
 
 password_hash = PasswordHash.recommended()
 
 email_adapter = TypeAdapter(EmailStr)
 
-
 class AdminService:
+    name = "Admin"
 
     @staticmethod
     def get_all_admin(db):
         admin_list = AdminRepository.get_all_admin(db)
         if not admin_list:
-            raise HTTPException(
-                status_code=404,
-                detail="Admin table is empty"
-            )
+            raise EmptyTableException(AdminService.name)
         else:
             return admin_list
 
@@ -29,10 +25,7 @@ class AdminService:
     def get_admin_by_id(admin_id, db):
         admin_data = AdminRepository.get_admin_by_id(admin_id, db)
         if not admin_data:
-            raise HTTPException(
-                status_code=404,
-                detail="Invalid department id"
-            )
+            raise InvalidIdException(AdminService.name, admin_id)
         else:
             return admin_data
 
@@ -56,14 +49,11 @@ class AdminService:
         try:
             valid_email = email_adapter.validate_python(admin_email)
         except :
-            raise InvalidADminEmailException("Please provide valid email address")
+            raise InvalidEmailException()
 
         admin = AdminRepository.update_admin_email(admin_id, valid_email, db)
         if not admin:
-            raise HTTPException(
-                status_code=404,
-                detail="Invalid admin id"
-            )
+            raise AdminDoesNotExistException()
         else:
             return admin
 
@@ -72,10 +62,7 @@ class AdminService:
     def delete_admin(admin_id, db):
         admin = AdminRepository.delete_admin(admin_id,db)
         if not admin:
-            raise HTTPException(
-                status_code=404,
-                detail="Admin does not exist"
-            )
+            raise AdminDoesNotExistException()
         else:
             return {"status": f"{admin.username} deleted successfull"}
 
